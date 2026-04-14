@@ -85,27 +85,6 @@ export default function App() {
     wordPoolRef.current = { general: generalWords, learning: learningWords };
   }, [generalWords, learningWords]);
 
-  // --- 載入預覽環境所需的字體與樣式 ---
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/earlyaccess/cwtexkai.css';
-    document.head.appendChild(link);
-
-    const style = document.createElement('style');
-    style.textContent = `
-      .font-biaukai { font-family: 'cwTeXKai', 'BiauKai', '標楷體', 'Kaiti TC', serif; }
-      @keyframes wiggle { 0%, 100% { transform: rotate(-5deg); } 50% { transform: rotate(5deg); } }
-      .animate-wiggle { animation: wiggle 0.5s ease-in-out infinite; }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(link);
-      document.head.removeChild(style);
-    };
-  }, []);
-
   // --- 身份驗證 ---
   useEffect(() => {
     if (!auth) return;
